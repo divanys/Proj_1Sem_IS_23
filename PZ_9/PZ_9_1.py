@@ -10,16 +10,16 @@ lst2 = []
 futKeys = []
 dictionary = {}  # Создаём 2 списка - значения для названий товаров - и пустой словарь
 
-for i in lst1:
-    if i.isalpha():
-        lst2.append(lst1.index(i))
-        futKeys.append(i)  # если в строке есть ключ (название продукта), то берем его id и само название
+for _ in lst1:
+    if _.isalpha():
+        lst2.append(lst1.index(_))
+        futKeys.append(_)  # если в строке есть ключ (название продукта), то берем его id и само название
 
-for i in range(len(lst2)):  # добавление в словарь ключа-названия товара и список проданных товаров
-    if lst2[i] == lst2[-1]:
-        dictionary[futKeys[i]] = [int(lst1[j]) for j in range(lst2[i] + 1, len(lst1))]
+for _ in range(len(lst2)):  # добавление в словарь ключа-названия товара и список проданных товаров
+    if lst2[_] == lst2[-1]:
+        dictionary[futKeys[_]] = [int(lst1[i]) for i in range(lst2[_] + 1, len(lst1))]
     else:
-        dictionary[futKeys[i]] = [int(lst1[p]) for p in range(lst2[i] + 1, lst2[i + 1])]
+        dictionary[futKeys[_]] = [int(lst1[j]) for j in range(lst2[_] + 1, lst2[_ + 1])]
 
 lst3 = []
 for key, value in dictionary.items():  # Вывод каждого словаря
