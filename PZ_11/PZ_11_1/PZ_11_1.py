@@ -15,7 +15,6 @@ my_list = []   # Заполняем список рандомным количе
 for i in range(randint(5, 20)):
     my_list.append(str(randint(-10, 10)))
 
-print(my_list)
 
 new_file = open("filext.txt", "w+")   # Создаём файл, в который поместим список
 new_file.writelines(' '.join(my_list))
@@ -23,7 +22,6 @@ new_file.close()
 
 new_file = open("filext.txt", "r+")   # Считываем сам список из этого файла
 list_1 = new_file.read().split(' ')
-print(list_1)
 new_file.close()
 
 # создаём новый файл, в который заносим "Входные данные", "Количество элементов", "Минимальный элемент",
