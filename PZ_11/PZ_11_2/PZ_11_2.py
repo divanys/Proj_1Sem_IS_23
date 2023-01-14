@@ -31,6 +31,7 @@ text2 = [str(ord(str(i))) for i in text[2]]
 for line in range(len(text)):
     if line == 2:
         new_file.writelines(' '.join(str(j) for j in text2))
+        new_file.writelines('\n')
     else:
         new_file.write(text[line])
 
