@@ -23,5 +23,7 @@ for i in matrix:
             positiveChetList.append(j)
 
 print("массив из положительных чётных элементов: ", positiveChetList)
-
-print('сумма: ', sum(positiveChetList), 'среднее арифметическое: ', sum(positiveChetList) / len(positiveChetList))
+try:
+    print('сумма: ', sum(positiveChetList), 'среднее арифметическое: ', sum(positiveChetList) / len(positiveChetList))
+except:
+    print("В матрице не имеются положительные чётные элементы")
