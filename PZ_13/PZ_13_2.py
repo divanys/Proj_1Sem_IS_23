@@ -15,7 +15,6 @@ for i in matrix:
 
 positiveChetList = []
 
-
 print('*****************************')
 for i in matrix:
     for j in i:
@@ -23,6 +22,7 @@ for i in matrix:
             positiveChetList.append(j)
 
 print("массив из положительных чётных элементов: ", positiveChetList)
+
 try:
     print('сумма: ', sum(positiveChetList), 'среднее арифметическое: ', sum(positiveChetList) / len(positiveChetList))
 except:
