@@ -27,3 +27,4 @@ try:
     print('сумма: ', sum(positiveChetList), 'среднее арифметическое: ', sum(positiveChetList) / len(positiveChetList))
 except:
     print("В матрице не имеются положительные чётные элементы")
+
