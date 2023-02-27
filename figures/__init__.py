@@ -1,3 +1,3 @@
-from .circle import *
-from .triangle import *
-from .square import *
+from figures.circle import *
+from figures.triangle import *
+from figures.square import *

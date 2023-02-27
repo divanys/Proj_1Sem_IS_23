@@ -1,4 +1,3 @@
-__all__ = ['circle_perimeter', 'circle_area']
 _default_radius = 5
 
 
