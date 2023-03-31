@@ -1,22 +1,75 @@
-from sqlite3 import *
-players = [[12, 'Николай', 1, 24, 1500],
-           [13, 'Михаил', 1, 22, 1200],
-           [14, 'Мария', 2, 18, 500],
-           [15, 'Евгения', 2, 29, 1700],
-           [16, 'Григорий', 1, 18, 2500]]
-with connect('DB/Saper.db') as db:
-    cur = db.cursor()
-#     cur.executemany(f"INSERT INTO users VALUES (?, ?, ? ,?, ?)", players)
-    cur.execute("SELECT * FROM users")
-    all_players = cur.fetchall()
-    print(f"Все игроки: \n{all_players}")
+import sqlite3 as sq
+from data import info_users
+from data import info_games
 
-    print(cur.execute(f"SELECT * FROM users WHERE sex='2'").fetchall())
-    print(cur.execute(f"SELECT * FROM users WHERE score < 1000").fetchall())
-    print(cur.execute(f"SELECT * FROM users ORDER BY score DESC").fetchone())
-    print(cur.execute(f"SELECT * FROM users WHERE old BETWEEN 18 AND 20").fetchall())
+with sq.connect('DB/saper.db') as con:
+    cur = con.cursor()
+    cur.execute("""CREATE TABLE IF NOT EXISTS users (
+        user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        sex INTEGER NOT NULL DEFAULT 1,
+        old INTEGER,
+        score INTEGER
+        )""")
+    # cur.execute("INSERT INTO users VALUES (6, 'Марк', 1, 18, 700)")
 
-    cur.execute(f"UPDATE users SET old = 20 WHERE old = 19")
-    cur.execute(f"UPDATE users SET score=score+300 WHERE score < 1000")
-    cur.execute(f"UPDATE users SET score = score + 100 WHERE old >= 20")
-    cur.execute(f"DELETE FROM users WHERE score <= 1000")
+    # cur.executemany("INSERT INTO users VALUES (?, ?, ?, ?, ?)",  info_users)
+
+with sq.connect('DB/saper.db') as con:
+    cur = con.cursor()
+    cur.execute("""CREATE TABLE IF NOT EXISTS games (
+        games_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        score INTEGER,
+        time INTEGER
+        )""")
+
+    # cur.executemany("INSERT INTO games VALUES (?, ?, ?, ?)",  info_games)
+
+with sq.connect('DB/saper.db') as con:
+    cur = con.cursor()
+    cur.execute("SELECT * FROM games")
+    result = cur.fetchall()
+print(result)
+
+with sq.connect('DB/saper.db') as con:
+    cur = con.cursor()
+    cur.execute("SELECT * FROM games WHERE score < 3000 ")
+    result1 = cur.fetchall()
+print(result1)
+
+with sq.connect('DB/saper.db') as con:
+    cur = con.cursor()
+    cur.execute("SELECT * FROM games WHERE time < 3000 ")
+    result2 = cur.fetchall()
+print(result2)
+
+with sq.connect('DB/saper.db') as con:
+    cur = con.cursor()
+    cur.execute("SELECT * FROM games WHERE games_id = 2 ")
+    result3 = cur.fetchall()
+print(result3)
+
+with sq.connect('DB/saper.db') as con:
+    cur = con.cursor()
+    cur.execute("SELECT * FROM games WHERE score = 700")
+    result4 = cur.fetchall()
+print(result4)
+
+with sq.connect('DB/saper.db') as con:
+    cur = con.cursor()
+    cur.execute("UPDATE games SET score = score+300 WHERE score = 1000 ")
+    result5 = cur.fetchall()
+
+with sq.connect('DB/saper.db') as con:
+    cur = con.cursor()
+    cur.execute("UPDATE games SET time = time+300 WHERE score = 1000 ")
+    result6 = cur.fetchall()
+
+with sq.connect('DB/saper.db') as con:
+    cur = con.cursor()
+    cur.execute("DELETE FROM games WHERE user_id = 1")
+    result7 = cur.fetchall()
+    cur.execute("SELECT * FROM games")
+    result7_1 = cur.fetchall()
+print(result7_1)
